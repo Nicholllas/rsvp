@@ -7,6 +7,7 @@ import Image from "next/image";
 import { GorgaMark } from "@/components/shared/batak-ornament";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { weddingConfig } from "@/config/wedding";
+import { cn } from "@/lib/utils";
 
 function PersonCard({ person, role, index }: {
   person: typeof weddingConfig.couple.bride | typeof weddingConfig.couple.groom;
@@ -15,6 +16,7 @@ function PersonCard({ person, role, index }: {
 }) {
   const reduceMotion = useReducedMotion();
   const delay = index * 0.16;
+  const showContainedImage = person.imageFit === "contain";
 
   return (
     <motion.article
@@ -41,7 +43,24 @@ function PersonCard({ person, role, index }: {
             visible: { scale: 1, transition: { duration: 1.2, delay: delay + 0.08, ease: [0.22, 1, 0.36, 1] } },
           }}
         >
-          <Image src={person.image} alt={`Foto ${person.name}`} fill sizes="(max-width: 640px) 80vw, 280px" className="object-cover" />
+          {showContainedImage && (
+            <Image
+              src={person.image}
+              alt=""
+              fill
+              sizes="(max-width: 640px) 80vw, 280px"
+              className="scale-110 object-cover opacity-55 blur-xl"
+              aria-hidden="true"
+            />
+          )}
+          <Image
+            src={person.image}
+            alt={`Foto ${person.name}`}
+            fill
+            sizes="(max-width: 640px) 80vw, 280px"
+            className={cn(showContainedImage ? "object-contain" : "object-cover")}
+            style={{ objectPosition: person.imagePosition }}
+          />
         </motion.div>
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-sage-900/35 to-transparent" />
         <div className="absolute inset-x-0 top-0 h-5 bg-gorga bg-repeat-x opacity-95 [background-size:89px_20px]" />

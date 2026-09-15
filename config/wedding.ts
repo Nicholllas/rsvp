@@ -16,7 +16,9 @@ export const weddingConfig = {
     bride: {
       name: "Ovalina Mia Anastasia Hutabarat",
       nickname: "Alin",
-      image: "/images/bride.svg",
+      image: "/images/alin.jpg",
+      imageFit: "cover",
+      imagePosition: "center",
       description: "Putri pertama dari",
       parents: "Alm. Bapak Taruli Hutabarat & Almh. Ibu Ratna Lawati",
       instagram: "https://instagram.com/",
@@ -24,7 +26,9 @@ export const weddingConfig = {
     groom: {
       name: "Richard Aditya Pratama",
       nickname: "Richard",
-      image: "/images/groom.svg",
+      image: "/images/richard.webp",
+      imageFit: "contain",
+      imagePosition: "center",
       description: "Putra kedua dari",
       parents: "Bapak Drs. Bambang Pratama & Ibu Dra. Sari Kusuma",
       instagram: "https://instagram.com/",

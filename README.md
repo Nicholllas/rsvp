@@ -1,4 +1,4 @@
-# Undangan Pernikahan Digital — Alin & Richard
+# Undangan Pernikahan Digital - Alin & Richard
 
 Undangan satu halaman yang mobile-first, dibangun dengan Next.js App Router, TypeScript,
 Tailwind CSS, Framer Motion, komponen bergaya shadcn/ui, React Hook Form, Zod, dan Supabase.

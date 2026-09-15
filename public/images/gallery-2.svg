@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Ilustrasi detail bunga pernikahan">
+  <rect width="800" height="800" fill="#f4eee3"/><circle cx="400" cy="400" r="310" fill="#fffdf7" stroke="#b4975a" stroke-opacity=".25" stroke-width="3"/>
+  <g stroke="#688060" stroke-width="12" fill="none" stroke-linecap="round"><path d="M210 655Q390 430 575 180"/><path d="M332 515q-98-54-128-141"/><path d="M417 420q88-50 140-133"/><path d="M495 320q-14-92 16-150"/></g>
+  <g fill="#a9bda1"><ellipse cx="244" cy="440" rx="38" ry="75" transform="rotate(-48 244 440)"/><ellipse cx="530" cy="341" rx="36" ry="73" transform="rotate(46 530 341)"/><ellipse cx="468" cy="253" rx="33" ry="65" transform="rotate(-31 468 253)"/></g>
+  <g fill="#d9a69e"><circle cx="204" cy="360" r="52"/><circle cx="174" cy="337" r="36"/><circle cx="225" cy="318" r="38"/><circle cx="250" cy="364" r="34"/><circle cx="207" cy="384" r="23"/></g>
+  <g fill="#fff8ec"><circle cx="572" cy="235" r="48"/><circle cx="548" cy="202" r="34"/><circle cx="597" cy="199" r="36"/><circle cx="616" cy="243" r="31"/><circle cx="572" cy="256" r="21"/></g>
+</svg>

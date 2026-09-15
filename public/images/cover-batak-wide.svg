@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Ilustrasi lanskap Batak dengan Rumah Bolon untuk layar lebar">
+  <defs>
+    <linearGradient id="sky-wide" x2="0" y2="1">
+      <stop stop-color="#170f0e"/>
+      <stop offset=".55" stop-color="#4f1f1e"/>
+      <stop offset="1" stop-color="#8d2f2b"/>
+    </linearGradient>
+    <radialGradient id="sun-wide">
+      <stop stop-color="#f6dfad" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#d8bd8a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fog-wide" x2="0" y2="1">
+      <stop stop-color="#f8f4eb" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#f8f4eb" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky-wide)"/>
+  <circle cx="800" cy="280" r="260" fill="url(#sun-wide)"/>
+
+  <path d="M0 525 185 330l130 122 202-234 192 230 142-165 170 180 219-236 190 221 170-154v398H0Z" fill="#201716" opacity=".58"/>
+  <path d="M0 548q205-92 410 0t410 0q205-92 410 0t370 2v224H0Z" fill="url(#fog-wide)"/>
+
+  <g transform="translate(145 505) scale(1.18)">
+    <path d="M12 112 132 18l120 94-32-10-88-55-90 55Z" fill="#15100f"/>
+    <path d="M43 102h178v121H43Z" fill="#241817"/>
+    <path d="m65 102 67-55 67 55" fill="none" stroke="#d8bd8a" stroke-width="4"/>
+    <path d="M62 126h140M62 151h140M62 176h140" stroke="#8d2f2b" stroke-width="5"/>
+    <path d="M82 111v112m100-112v112M114 111v112m36-112v112" stroke="#d8bd8a" stroke-width="3" opacity=".72"/>
+    <path d="M34 223h196M56 223l-12 45m164-45 12 45M98 223l-6 45m74-45 6 45" stroke="#171110" stroke-width="8"/>
+    <path d="M111 101q21-21 42 0-21 22-42 0Z" fill="#8d2f2b" stroke="#d8bd8a" stroke-width="2"/>
+  </g>
+
+  <path d="M0 805q225-72 435 5t430-7q210-72 402 1t333-10v106H0Z" fill="#160f0e"/>
+
+  <g fill="#d8bd8a" opacity=".45">
+    <circle cx="88" cy="205" r="2"/>
+    <circle cx="335" cy="172" r="1.5"/>
+    <circle cx="598" cy="344" r="2"/>
+    <circle cx="1010" cy="178" r="1.5"/>
+    <circle cx="1260" cy="354" r="2"/>
+    <circle cx="1495" cy="214" r="1.5"/>
+  </g>
+</svg>

@@ -32,15 +32,15 @@ export function HeroSection({ active }: { active: boolean }) {
 
   return (
     <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-batak-ink px-5 py-24 text-center text-ivory">
-      <Image src="/images/cover-batak.svg" alt="" fill priority sizes="100vw" className="object-cover opacity-35" />
+      <Image src="/images/cover-batak.svg" alt="" fill priority sizes="100vw" className="object-cover opacity-35 md:hidden" />
+      <Image src="/images/cover-batak-wide.svg" alt="" fill priority sizes="100vw" className="hidden object-cover opacity-35 md:block" />
       <div className="absolute inset-0 bg-gradient-to-b from-batak-ink/70 via-batak-deep/65 to-batak-ink/95" />
       <div className="absolute inset-0 bg-grain opacity-25" />
       <UlosBand className="absolute inset-x-0 top-0 z-10" />
-      <div className="absolute left-1/2 top-1/2 h-[82vw] max-h-[620px] w-[82vw] max-w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-[48%_48%_18%_18%] border border-gold/30" />
       <motion.div className="absolute left-[8%] top-[22%] h-3 w-3 rotate-45 border border-gold/45" animate={{ y: [0, -14, 0], rotate: [45, 70, 45] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
       <motion.div className="absolute bottom-[18%] right-[9%] h-2 w-2 rotate-45 bg-batak-red" animate={{ y: [0, 12, 0], rotate: [45, 20, 45] }} transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }} />
       <motion.div
-        className="relative mx-auto max-w-3xl"
+        className="relative mx-auto w-full max-w-[620px] rounded-[10rem_10rem_2.5rem_2.5rem] border border-gold/30 px-3 pb-10 pt-16 sm:px-10 sm:pb-14 sm:pt-20"
         initial={false}
         animate={active ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.96, y: 20 }}
         transition={{ duration: 0.9, delay: active ? 1.42 : 0, ease: [0.22, 1, 0.36, 1] }}
@@ -59,9 +59,9 @@ export function HeroSection({ active }: { active: boolean }) {
           {formatIndonesianDate(weddingConfig.weddingDate)}
         </p>
 
-        <div className="mx-auto mt-9 grid max-w-md grid-cols-4 gap-2 sm:gap-4" aria-label="Hitung mundur hari pernikahan">
+        <div className="mx-auto mt-9 grid w-full max-w-md grid-cols-[repeat(4,minmax(0,1fr))] gap-1.5 sm:gap-4" aria-label="Hitung mundur hari pernikahan">
           {(["days", "hours", "minutes", "seconds"] as const).map((unit) => (
-            <div key={unit} className="rounded-2xl border border-gold/20 bg-batak-ink/45 px-2 py-3.5 shadow-sm backdrop-blur-sm">
+            <div key={unit} className="min-w-0 overflow-hidden rounded-2xl border border-gold/20 bg-batak-ink/45 px-1 py-3.5 shadow-sm backdrop-blur-sm sm:px-2">
               <span className="block font-serif text-2xl font-semibold tabular-nums text-ivory sm:text-3xl">
                 {String(timeLeft?.[unit] ?? 0).padStart(2, "0")}
               </span>

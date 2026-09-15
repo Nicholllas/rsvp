@@ -65,7 +65,8 @@ export function OpeningCover({ guestName, isOpen, onOpen }: { guestName: string;
       aria-label="Sampul undangan"
     >
       <motion.div className="absolute inset-0" animate={isOpen ? { scale: 1.09, y: -14 } : { scale: 1, y: 0 }} transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}>
-        <Image src="/images/cover-batak.svg" alt="" fill priority sizes="100vw" className="object-cover opacity-90" />
+        <Image src="/images/cover-batak.svg" alt="" fill priority sizes="100vw" className="object-cover opacity-90 md:hidden" />
+        <Image src="/images/cover-batak-wide.svg" alt="" fill priority sizes="100vw" className="hidden object-cover opacity-90 md:block" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-batak-ink/40 via-batak-deep/10 to-batak-ink/80" />
       <div className="absolute inset-0 bg-grain opacity-20" />

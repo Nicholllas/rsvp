@@ -1,4 +1,11 @@
 packages:
   - "."
+
+minimumReleaseAge: 10080
+blockExoticSubdeps: true
+
+overrides:
+  postcss: 8.5.28
+
 allowBuilds:
-  unrs-resolver: set this to true or false
+  unrs-resolver: false

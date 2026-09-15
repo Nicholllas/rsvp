@@ -10,11 +10,25 @@ create table if not exists public.guest_messages (
 
 alter table public.guest_messages enable row level security;
 
+-- New Supabase projects no longer expose public tables automatically. Keep the
+-- Data API surface explicit: anonymous guests may only read and submit the four
+-- RSVP fields. They cannot set ids, timestamps, or moderation state.
+revoke all privileges on table public.guest_messages from public, anon, authenticated;
+revoke all privileges on sequence public.guest_messages_id_seq from public, anon, authenticated;
+
+grant usage on schema public to anon;
+grant select on table public.guest_messages to anon;
+grant insert (name, attendance, guest_count, message)
+on table public.guest_messages to anon;
+grant usage, select on sequence public.guest_messages_id_seq to anon;
+
+drop policy if exists "Public can read approved messages" on public.guest_messages;
 create policy "Public can read approved messages"
 on public.guest_messages for select
 to anon
 using (approved = true);
 
+drop policy if exists "Public can submit messages" on public.guest_messages;
 create policy "Public can submit messages"
 on public.guest_messages for insert
 to anon

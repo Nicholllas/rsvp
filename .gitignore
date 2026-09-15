@@ -23,6 +23,11 @@ pnpm-debug.log*
 # vercel
 .vercel
 
+# local AI tooling (not required by the website)
+/.agents/
+/.claude/
+/skills-lock.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

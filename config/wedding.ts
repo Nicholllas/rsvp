@@ -14,11 +14,11 @@ export const weddingConfig = {
   couple: {
     shortNames: "Alin & Richard",
     bride: {
-      name: "Alin Putri Maheswari",
+      name: "Ovalina Mia Anastasia Hutabarat",
       nickname: "Alin",
       image: "/images/bride.svg",
       description: "Putri pertama dari",
-      parents: "Bapak H. Arief Mahendra & Ibu Hj. Ratna Wulandari",
+      parents: "Alm. Bapak Taruli Hutabarat & Almh. Ibu Ratna Lawati",
       instagram: "https://instagram.com/",
     },
     groom: {

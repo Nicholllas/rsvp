@@ -9,6 +9,10 @@ import { GorgaMark, UlosBand } from "@/components/shared/batak-ornament";
 import { Button } from "@/components/ui/button";
 import { weddingConfig } from "@/config/wedding";
 
+const OPENING_EXIT_DELAY_SECONDS = 1.45;
+const OPENING_EXIT_DURATION_SECONDS = 1.05;
+const OPENING_TOTAL_MS = 2600;
+
 export function OpeningCover({ guestName, isOpen, onOpen }: { guestName: string; isOpen: boolean; onOpen: () => void }) {
   const reduceMotion = useReducedMotion();
 
@@ -29,7 +33,7 @@ export function OpeningCover({ guestName, isOpen, onOpen }: { guestName: string;
           document.body.style.touchAction = previousBodyTouchAction;
           document.documentElement.style.overflow = previousHtmlOverflow;
           document.documentElement.style.overscrollBehavior = previousOverscroll;
-        }, reduceMotion ? 180 : 1450)
+        }, reduceMotion ? 180 : OPENING_TOTAL_MS)
       : undefined;
 
     return () => {
@@ -52,11 +56,15 @@ export function OpeningCover({ guestName, isOpen, onOpen }: { guestName: string;
       className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-batak-ink px-5 text-center text-ivory"
       initial={false}
       animate={isOpen ? { clipPath: "inset(0 0 100% 0)", opacity: 0.98 } : { clipPath: "inset(0 0 0% 0)", opacity: 1 }}
-      transition={{ duration: reduceMotion ? 0.15 : 1.18, ease: [0.76, 0, 0.24, 1] }}
+      transition={{
+        duration: reduceMotion ? 0.15 : OPENING_EXIT_DURATION_SECONDS,
+        delay: isOpen && !reduceMotion ? OPENING_EXIT_DELAY_SECONDS : 0,
+        ease: [0.76, 0, 0.24, 1],
+      }}
       style={{ pointerEvents: isOpen ? "none" : "auto" }}
       aria-label="Sampul undangan"
     >
-      <motion.div className="absolute inset-0" animate={isOpen ? { scale: 1.09, y: -14 } : { scale: 1, y: 0 }} transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}>
+      <motion.div className="absolute inset-0" animate={isOpen ? { scale: 1.09, y: -14 } : { scale: 1, y: 0 }} transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}>
         <Image src="/images/cover-batak.svg" alt="" fill priority sizes="100vw" className="object-cover opacity-90" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-batak-ink/40 via-batak-deep/10 to-batak-ink/80" />
@@ -102,9 +110,14 @@ export function OpeningCover({ guestName, isOpen, onOpen }: { guestName: string;
 
       <motion.div
         className="pointer-events-none absolute inset-0 z-20 grid place-items-center"
-        initial={{ opacity: 0 }}
-        animate={isOpen && !reduceMotion ? { opacity: [0, 1, 0], scale: [0.78, 1, 1.08] } : { opacity: 0 }}
-        transition={{ duration: 0.92, times: [0, 0.42, 1], ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={isOpen && !reduceMotion ? { opacity: [0, 1, 1, 0], scale: [0.92, 1, 1, 1.035] } : { opacity: 0, scale: 0.92 }}
+        transition={{
+          duration: 1.55,
+          delay: isOpen && !reduceMotion ? 0.15 : 0,
+          times: [0, 0.2, 0.78, 1],
+          ease: [0.22, 1, 0.36, 1],
+        }}
       >
         <div className="rounded-full border border-gold/50 bg-batak-ink/70 px-9 py-6 backdrop-blur-sm">
           <Sparkles className="mx-auto mb-1 h-4 w-4 text-gold" />

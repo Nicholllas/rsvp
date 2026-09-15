@@ -43,7 +43,7 @@ export function HeroSection({ active }: { active: boolean }) {
         className="relative mx-auto max-w-3xl"
         initial={false}
         animate={active ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.96, y: 20 }}
-        transition={{ duration: 0.8, delay: active ? 0.16 : 0, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.9, delay: active ? 1.42 : 0, ease: [0.22, 1, 0.36, 1] }}
       >
         <GorgaMark className="mx-auto mb-5 text-gold" />
         <div className="mx-auto mb-5 grid h-11 w-11 place-items-center rounded-full border border-gold/35 text-gold">
@@ -51,9 +51,9 @@ export function HeroSection({ active }: { active: boolean }) {
         </div>
         <p className="text-[10px] font-medium uppercase tracking-[0.4em] text-gold">Marulaon adat · Save the date</p>
         <h1 className="my-6 font-serif text-[clamp(4rem,14vw,7rem)] font-semibold leading-[0.78] tracking-tight text-ivory">
-          <motion.span className="block" initial={false} animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }} transition={{ duration: 0.7, delay: 0.34 }}>{weddingConfig.couple.bride.nickname}</motion.span>
-          <motion.span className="my-3 block text-[0.48em] font-medium italic text-gold" initial={false} animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.6 }} transition={{ duration: 0.5, delay: 0.45 }}>&</motion.span>
-          <motion.span className="block" initial={false} animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }} transition={{ duration: 0.7, delay: 0.34 }}>{weddingConfig.couple.groom.nickname}</motion.span>
+          <motion.span className="block" initial={false} animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }} transition={{ duration: 0.72, delay: active ? 1.62 : 0 }}>{weddingConfig.couple.bride.nickname}</motion.span>
+          <motion.span className="my-3 block text-[0.48em] font-medium italic text-gold" initial={false} animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.6 }} transition={{ duration: 0.55, delay: active ? 1.76 : 0 }}>&</motion.span>
+          <motion.span className="block" initial={false} animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }} transition={{ duration: 0.72, delay: active ? 1.62 : 0 }}>{weddingConfig.couple.groom.nickname}</motion.span>
         </h1>
         <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-ivory/75">
           {formatIndonesianDate(weddingConfig.weddingDate)}

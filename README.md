@@ -15,7 +15,8 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-Buka `http://localhost:3000?to=Nama%20Tamu`. Tanpa environment variable Supabase, website
+Buka `http://localhost:3000` untuk mode fallback, atau `http://localhost:3000/[slug]` untuk
+undangan personal (slug dari database guests). Tanpa environment variable Supabase, website
 tetap dapat dilihat dalam mode demo; pengiriman RSVP dinonaktifkan.
 
 ## Menyiapkan Supabase

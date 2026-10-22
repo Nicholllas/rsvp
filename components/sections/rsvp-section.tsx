@@ -16,7 +16,7 @@ import { cn, formatRelativeTime, getInitial } from "@/lib/utils";
 
 const VISIBLE_INCREMENT = 5;
 
-export function RsvpSection({ initialName }: { initialName: string }) {
+export function RsvpSection({ initialName, maxCompanions = 5 }: { initialName: string; maxCompanions?: number }) {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [isLoadingMessages, setIsLoadingMessages] = useState(true);
   const [notice, setNotice] = useState<{ type: "success" | "error" | "setup"; text: string } | null>(null);
@@ -113,9 +113,15 @@ export function RsvpSection({ initialName }: { initialName: string }) {
 
               {attendance === "attending" && (
                 <div>
-                  <label htmlFor="guestCount" className="mb-2 block text-xs font-medium text-ivory/80">Jumlah tamu</label>
+                  <label htmlFor="guestCount" className="mb-2 block text-xs font-medium text-ivory/80">
+                    Jumlah tamu{maxCompanions > 0 && <span className="ml-1 text-ivory/50">(maks. {maxCompanions})</span>}
+                  </label>
                   <select id="guestCount" className="h-11 w-full rounded-xl border border-gold/20 bg-batak-ink/40 px-4 text-sm text-ivory outline-none focus:border-gold focus:ring-2 focus:ring-gold/15" {...register("guestCount")}>
-                    {[1, 2, 3, 4, 5].map((count) => <option key={count} value={count}>{count} orang</option>)}
+                    {Array.from({ length: Math.min(maxCompanions || 5, 5) }, (_, i) => i + 1).map((count) => (
+                      <option key={count} value={count}>
+                        {count} orang
+                      </option>
+                    ))}
                   </select>
                   {errors.guestCount && <p className="mt-1.5 text-xs text-rose">{errors.guestCount.message}</p>}
                 </div>

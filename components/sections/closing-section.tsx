@@ -9,7 +9,7 @@ export function ClosingSection() {
   const photoRef = usePhotoSwapOnView({ src: "/images/alin-richard/07.jpg", alt: "Foto penutup pernikahan" });
 
   return (
-    <footer ref={photoRef as React.RefObject<HTMLElement>} className="relative overflow-hidden px-5 py-20 text-center text-ivory sm:py-28">
+    <footer ref={photoRef as React.RefObject<HTMLElement>} className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 py-20 text-center text-ivory sm:py-28">
       <UlosBand className="absolute inset-x-0 top-0" />
       <div className="absolute inset-0 bg-grain opacity-20" />
       <Reveal className="relative mx-auto max-w-2xl">

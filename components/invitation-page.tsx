@@ -16,7 +16,7 @@ import { StorySection } from "@/components/sections/story-section";
 import { MusicControl } from "@/components/shared/music-control";
 import { BatakDivider } from "@/components/shared/batak-ornament";
 
-export function InvitationPage({ guestName }: { guestName: string }) {
+export function InvitationPage({ guestName, maxCompanions = 0 }: { guestName: string; maxCompanions?: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,7 +33,7 @@ export function InvitationPage({ guestName }: { guestName: string }) {
           <EventSection />
           <GallerySection />
           <BatakDivider variant="panel" />
-          <RsvpSection initialName={guestName === "Bapak/Ibu/Saudara/i" ? "" : guestName} />
+          <RsvpSection initialName={guestName === "Bapak/Ibu/Saudara/i" ? "" : guestName} maxCompanions={maxCompanions} />
           <GiftSection />
           <ClosingSection />
         </SplitLayout>

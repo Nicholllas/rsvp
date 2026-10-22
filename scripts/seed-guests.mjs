@@ -22,6 +22,7 @@ dotenv.config({ path: join(__dirname, '..', '.env.local') });
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 if (!supabaseUrl || !serviceRoleKey) {
   console.error('❌ Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env.local');
@@ -76,7 +77,7 @@ async function seed() {
       } else {
         console.log(`✅ ${guest.name}`);
         console.log(`   Slug: ${slug}`);
-        console.log(`   Link: ${supabaseUrl.replace('.supabase.co', '')}.vercel.app/${slug}\n`);
+        console.log(`   Link: ${siteUrl}/${slug}\n`);
         successCount++;
       }
     } catch (err) {

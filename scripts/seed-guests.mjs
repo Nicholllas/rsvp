@@ -10,15 +10,29 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { randomBytes } from 'crypto';
-import * as dotenv from 'dotenv';
+import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Load .env.local from project root
-dotenv.config({ path: join(__dirname, '..', '.env.local') });
+// Load .env.local from project root manually
+const envPath = join(__dirname, '..', '.env.local');
+try {
+  const envFile = readFileSync(envPath, 'utf8');
+  envFile.split('\n').forEach(line => {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith('#')) {
+      const [key, ...values] = trimmed.split('=');
+      if (key && values.length) {
+        process.env[key.trim()] = values.join('=').trim();
+      }
+    }
+  });
+} catch (err) {
+  console.error('⚠️  Could not load .env.local file');
+}
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;

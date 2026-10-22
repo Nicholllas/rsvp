@@ -10,114 +10,161 @@ export type WeddingEvent = {
   mapsEmbedUrl: string;
 };
 
+export type StoryMoment = {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+  highlight: string;
+};
+
 export const weddingConfig = {
   couple: {
     shortNames: "Alin & Richard",
     bride: {
-      name: "Ovalina Mia Anastasia Hutabarat",
+      name: "Ovalina Mia Anastasia",
       nickname: "Alin",
-      image: "/images/alin.jpg",
+      image: "/images/alin-richard/bride.jpg",
       imageFit: "cover",
       imagePosition: "center",
-      description: "Putri pertama dari",
+      description: "Anak pertama dari",
       parents: "Alm. Bapak Taruli Hutabarat & Almh. Ibu Ratna Lawati",
-      instagram: "https://instagram.com/",
+      instagram: "https://www.instagram.com/ovalinamia18/",
+      instagramHandle: "ovalinamia18",
     },
     groom: {
-      name: "Richard Aditya Pratama",
+      name: "Richard",
       nickname: "Richard",
-      image: "/images/richard.webp",
-      imageFit: "contain",
+      image: "/images/alin-richard/groom.jpg",
+      imageFit: "cover",
       imagePosition: "center",
-      description: "Putra kedua dari",
-      parents: "Bapak Drs. Bambang Pratama & Ibu Dra. Sari Kusuma",
-      instagram: "https://instagram.com/",
+      description: "Anak kelima dari ",
+      parents: "Alm. Bapak Aron Sianipar & Almh. Ibu Rauli Hutapea",
+      instagram: "https://www.instagram.com/dr.richard_lee/",
+      instagramHandle: "Richard",
     },
   },
-  weddingDate: "2027-06-26T08:00:00+07:00",
+  weddingDate: "2026-11-14T08:00:00+07:00",
   timezone: "Asia/Jakarta",
   quote: {
-    text: "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya.",
-    source: "QS. Ar-Rum: 21",
+    text: "Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia.",
+    source: "Matius 19:6",
   },
   story: [
     {
-      year: "2021",
-      title: "Pertama Bertemu",
+      id: "awal-kenal",
+      date: "Juli 2025",
+      title: "Awal Kenal",
       description:
-        "Sebuah pertemuan sederhana di antara teman-teman membawa dua cerita ke satu halaman yang sama.",
+        "Semua bermula di sebuah toko retail, di sela percakapan singkat yang tak pernah kami rencanakan. Waktu itu kami hanya dua orang yang saling kenal sebagai teman, lalu bertukar nomor tanpa tahu apa yang akan tumbuh dari sana.",
+      highlight: "Sebuah perkenalan biasa — yang ternyata bukan hal biasa.",
     },
     {
-      year: "2023",
-      title: "Tumbuh Bersama",
+      id: "hilang-kabar",
+      date: "Juli – Des 2025",
+      title: "Hilang Kabar",
       description:
-        "Kami belajar bahwa rumah bukan hanya tempat, tetapi seseorang yang selalu mengusahakan pulang.",
+        "Nomor sudah bertukar, tetapi percakapan berhenti di tengah jalan. Kami kembali sibuk dengan dunia masing-masing, dan untuk beberapa bulan nama itu hanya tersimpan diam di daftar kontak.",
+      highlight: "Ada masa ketika kami hanya menjadi nama yang tak pernah dibuka.",
     },
     {
-      year: "2026",
-      title: "Satu Tujuan",
+      id: "kabar-yang-kembali",
+      date: "Januari 2026",
+      title: "Kabar yang Kembali",
       description:
-        "Dengan restu keluarga, kami memilih melanjutkan perjalanan ini sebagai satu keluarga.",
+        "Sampai akhirnya satu pesan sederhana dikirim lagi. Pintu yang kami kira sudah tertutup ternyata hanya menunggu diketuk, dan obrolan kami mengalir seolah tidak pernah benar-benar berhenti.",
+      highlight: "Yang tertunda, ternyata belum tentu yang terlewat.",
     },
-  ],
+    {
+      id: "memilih-bersama",
+      date: "2026",
+      title: "Memilih untuk Bersama",
+      description:
+        "Percakapan yang tadinya ringan perlahan menjadi lebih dalam. Kami memutuskan menjalani ini bersama — bukan karena semuanya mudah, tetapi karena kami ingin menghadapi hari-hari itu berdua.",
+      highlight: "Kami tidak hanya saling menemukan, kami saling memilih.",
+    },
+    {
+      id: "menuju-selamanya",
+      date: "14 · 11 · 2026",
+      title: "Obrolan Menuju Selamanya",
+      description:
+        "Arah obrolan kami pun berubah: dari rencana kecil menjadi doa, restu keluarga, dan tanggal yang kami tunggu. Dengan langkah pelan tetapi pasti, kami berjalan menuju hari pernikahan — dan ingin Anda ada di sana.",
+      highlight: "Bukan akhir cerita, melainkan awal yang kami doakan.",
+    },
+  ] satisfies StoryMoment[],
   events: [
     {
       id: "akad",
-      title: "Akad Nikah",
-      date: "2027-06-26T08:00:00+07:00",
-      endDate: "2027-06-26T10:00:00+07:00",
-      time: "08.00 – 10.00 WIB",
-      venue: "The Glass House",
-      address: "Jl. Gatot Subroto No. 42, Jakarta Selatan",
-      mapsUrl: "https://maps.google.com/?q=Jakarta+Convention+Center",
+      title: "Pemberkatan Nikah",
+      date: "2026-11-14T08:00:00+07:00",
+      endDate: "2026-11-14T10:00:00+07:00",
+      time: "10.00 – 12.00 WIB",
+      venue: "Gereja GBI Harapan Indah",
+      address: "-",
+      mapsUrl: "https://maps.google.com/?q=Gereja+GBI+Harapan+Indah",
       mapsEmbedUrl:
-        "https://www.google.com/maps?q=Jakarta%20Convention%20Center&output=embed",
+        "https://www.google.com/maps?q=Gereja+GBI+Harapan+Indah&output=embed",
     },
     {
       id: "reception",
       title: "Resepsi & Pesta Adat",
-      date: "2027-06-26T11:00:00+07:00",
-      endDate: "2027-06-26T14:00:00+07:00",
-      time: "11.00 – 14.00 WIB",
-      venue: "The Glass House",
-      address: "Jl. Gatot Subroto No. 42, Jakarta Selatan",
-      mapsUrl: "https://maps.google.com/?q=Jakarta+Convention+Center",
+      date: "2026-11-14T11:00:00+07:00",
+      endDate: "2026-11-14T14:00:00+07:00",
+      time: "13.00 – Selesai",
+      venue: "TeRasa Cafe",
+      address: "Blok A No. 1, Perum Dutabumi 2 Jl. Harapan Indah Raya, RT.001/RW.029, Pejuang, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17131",
+      mapsUrl: "https://maps.app.goo.gl/zdrtTJadH31P8u2p9?g_st=awb",
       mapsEmbedUrl:
-        "https://www.google.com/maps?q=Jakarta%20Convention%20Center&output=embed",
+        "https://www.google.com/maps?q=TeRasa+Cafe&output=embed",
     },
   ] satisfies WeddingEvent[],
   gallery: [
     {
-      src: "/images/gallery-1.svg",
+      src: "/images/alin-richard/01.jpg",
       alt: "Alin dan Richard berjalan bersama",
       className: "sm:col-span-2",
     },
     {
-      src: "/images/gallery-2.svg",
-      alt: "Detail bunga pernikahan",
+      src: "/images/alin-richard/02.jpg",
+      alt: "Berpelukan dalam busana adat Batak",
       className: "",
     },
     {
-      src: "/images/gallery-3.svg",
-      alt: "Momen hangat Alin dan Richard",
+      src: "/images/alin-richard/03.jpg",
+      alt: "Saling menghadap, momen hangat",
       className: "",
     },
     {
-      src: "/images/gallery-4.svg",
-      alt: "Cincin pernikahan",
+      src: "/images/alin-richard/04.jpg",
+      alt: "Pose dramatis dengan tongkat dan kotak gorga",
+      className: "sm:col-span-2",
+    },
+    {
+      src: "/images/alin-richard/05.jpg",
+      alt: "Richard berdiri tegak, Alin di samping",
+      className: "",
+    },
+    {
+      src: "/images/alin-richard/06.jpg",
+      alt: "Berdiri dekat, detail ulos",
+      className: "",
+    },
+    {
+      src: "/images/alin-richard/07.jpg",
+      alt: "Richard duduk, Alin berdiri",
       className: "sm:col-span-2",
     },
   ],
   gifts: [
     {
       bank: "Bank Central Asia (BCA)",
-      accountNumber: "1234567890",
-      accountName: "Alin Putri Maheswari",
+      accountNumber: "0940771251",
+      accountName: "Ovalina Mia Anastasia",
     },
     {
-      bank: "GoPay",
-      accountNumber: "081234567890",
-      accountName: "Richard Aditya Pratama",
+      bank: "Dana",
+      accountNumber: "089507601896",
+      accountName: "Ovalina Mia Anastasia",
     },
   ],
   closingMessage:

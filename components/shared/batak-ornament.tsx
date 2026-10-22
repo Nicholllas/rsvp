@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 export function UlosBand({ className }: { className?: string }) {
-  return <div aria-hidden="true" className={cn("ulos-band h-[54px] w-full", className)} />;
+  return <div aria-hidden="true" className={cn("ulos-band w-full", className)} />;
 }
 
 export function GorgaMark({ className }: { className?: string }) {
@@ -14,12 +14,15 @@ export function GorgaMark({ className }: { className?: string }) {
   );
 }
 
-export function BatakDivider({ inverted = false }: { inverted?: boolean }) {
+export function BatakDivider({ inverted = false, variant = "default" }: { inverted?: boolean; variant?: "default" | "panel" }) {
+  const bgColor = variant === "panel" ? "bg-transparent" : inverted ? "bg-sage-900" : "bg-cream";
   return (
-    <div className={cn("relative h-8 overflow-hidden", inverted ? "bg-sage-900" : "bg-cream")} aria-hidden="true">
-      <div className="absolute inset-x-0 top-1/2 h-px bg-gold/35" />
-      <div className={cn("absolute left-1/2 top-1/2 grid h-8 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center", inverted ? "bg-sage-900" : "bg-cream")}>
-        <span className="h-3 w-3 rotate-45 border border-gold" />
+    <div className={cn("relative flex h-12 items-center justify-center overflow-hidden", bgColor)} aria-hidden="true">
+      <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+      <div className={cn("relative z-10 flex items-center gap-2 px-3", bgColor)}>
+        <span className="h-2 w-2 rotate-45 border border-gold/70" />
+        <GorgaMark className="h-6 w-12 text-gold/60" />
+        <span className="h-2 w-2 rotate-45 border border-gold/70" />
       </div>
     </div>
   );

@@ -1,22 +1,27 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, Loader2, MessageCircleHeart, Send, Users } from "lucide-react";
+import { CheckCircle2, ChevronDown, Loader2, MessageCircleHeart, Send, Users } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { usePhotoSwapOnView } from "@/components/layout/use-photo-swap";
 import { Reveal } from "@/components/shared/reveal";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { type GuestMessage, type RsvpInput, rsvpSchema } from "@/lib/rsvp-schema";
-import { cn } from "@/lib/utils";
+import { cn, formatRelativeTime, getInitial } from "@/lib/utils";
+
+const VISIBLE_INCREMENT = 5;
 
 export function RsvpSection({ initialName }: { initialName: string }) {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [isLoadingMessages, setIsLoadingMessages] = useState(true);
   const [notice, setNotice] = useState<{ type: "success" | "error" | "setup"; text: string } | null>(null);
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_INCREMENT);
+  const photoRef = usePhotoSwapOnView({ src: "/images/alin-richard/03.jpg", alt: "Foto RSVP pernikahan" });
 
   const {
     register,
@@ -64,6 +69,7 @@ export function RsvpSection({ initialName }: { initialName: string }) {
       if (!response.ok) throw new Error(body.error ?? "Gagal mengirim RSVP.");
 
       setMessages((current) => [body.message, ...current]);
+      setVisibleCount((c) => c + 1);
       setNotice({ type: "success", text: "Terima kasih, konfirmasi dan ucapan Anda sudah tersimpan." });
       reset({ name: initialName, attendance: "attending", guestCount: 1, message: "", website: "" });
     } catch (error) {
@@ -71,30 +77,34 @@ export function RsvpSection({ initialName }: { initialName: string }) {
     }
   }
 
+  const visibleMessages = messages.slice(0, visibleCount);
+  const hasMore = messages.length > visibleCount;
+
   return (
-    <section id="rsvp" className="batak-pattern-light relative overflow-hidden">
-      <div className="section-shell">
-        <SectionHeading eyebrow="Will you join us?" title="RSVP & Ucapan" />
+    <section ref={photoRef as React.RefObject<HTMLElement>} id="rsvp" className="relative overflow-hidden text-ivory">
+      <div className="panel-shell">
+        <SectionHeading eyebrow="Will you join us?" title="RSVP & Ucapan" variant="panel" />
         <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal className="glass-card rounded-3xl p-6 sm:p-8">
-            <h3 className="font-serif text-3xl font-semibold text-sage-900">Konfirmasi Kehadiran</h3>
-            <p className="mt-2 text-sm text-sage-700/70">Mohon isi sebelum 12 Juni 2027.</p>
+          {/* Form Card */}
+          <Reveal className="rounded-3xl border border-gold/20 bg-batak-ink/40 p-6 backdrop-blur-sm sm:p-8">
+            <h3 className="font-serif text-3xl font-semibold text-ivory">Konfirmasi Kehadiran</h3>
+            <p className="mt-2 text-sm text-ivory/60">Mohon isi sebelum 31 Oktober 2026.</p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="mt-7 space-y-5" noValidate>
               <div>
-                <label htmlFor="name" className="mb-2 block text-xs font-medium text-sage-800">Nama lengkap</label>
+                <label htmlFor="name" className="mb-2 block text-xs font-medium text-ivory/80">Nama lengkap</label>
                 <Input id="name" placeholder="Nama Anda" autoComplete="name" {...register("name")} />
                 {errors.name && <p className="mt-1.5 text-xs text-rose">{errors.name.message}</p>}
               </div>
 
               <fieldset>
-                <legend className="mb-2 text-xs font-medium text-sage-800">Konfirmasi kehadiran</legend>
+                <legend className="mb-2 text-xs font-medium text-ivory/80">Konfirmasi kehadiran</legend>
                 <div className="grid grid-cols-2 gap-2">
-                  <label className={cn("cursor-pointer rounded-xl border px-3 py-3 text-center text-xs transition", attendance === "attending" ? "border-sage-500 bg-sage-100 text-sage-900" : "bg-white/60 text-sage-700")}>
+                  <label className={cn("cursor-pointer rounded-xl border px-3 py-3 text-center text-xs transition", attendance === "attending" ? "border-gold bg-gold/15 text-ivory" : "border-gold/20 bg-batak-ink/30 text-ivory/70")}>
                     <input type="radio" value="attending" className="sr-only" {...register("attendance")} />
                     Ya, saya hadir
                   </label>
-                  <label className={cn("cursor-pointer rounded-xl border px-3 py-3 text-center text-xs transition", attendance === "not_attending" ? "border-sage-500 bg-sage-100 text-sage-900" : "bg-white/60 text-sage-700")}>
+                  <label className={cn("cursor-pointer rounded-xl border px-3 py-3 text-center text-xs transition", attendance === "not_attending" ? "border-gold bg-gold/15 text-ivory" : "border-gold/20 bg-batak-ink/30 text-ivory/70")}>
                     <input type="radio" value="not_attending" className="sr-only" {...register("attendance")} />
                     Maaf, tidak hadir
                   </label>
@@ -103,8 +113,8 @@ export function RsvpSection({ initialName }: { initialName: string }) {
 
               {attendance === "attending" && (
                 <div>
-                  <label htmlFor="guestCount" className="mb-2 block text-xs font-medium text-sage-800">Jumlah tamu</label>
-                  <select id="guestCount" className="h-11 w-full rounded-xl border border-sage-700/15 bg-white/70 px-4 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/15" {...register("guestCount")}>
+                  <label htmlFor="guestCount" className="mb-2 block text-xs font-medium text-ivory/80">Jumlah tamu</label>
+                  <select id="guestCount" className="h-11 w-full rounded-xl border border-gold/20 bg-batak-ink/40 px-4 text-sm text-ivory outline-none focus:border-gold focus:ring-2 focus:ring-gold/15" {...register("guestCount")}>
                     {[1, 2, 3, 4, 5].map((count) => <option key={count} value={count}>{count} orang</option>)}
                   </select>
                   {errors.guestCount && <p className="mt-1.5 text-xs text-rose">{errors.guestCount.message}</p>}
@@ -112,7 +122,7 @@ export function RsvpSection({ initialName }: { initialName: string }) {
               )}
 
               <div>
-                <label htmlFor="message" className="mb-2 block text-xs font-medium text-sage-800">Ucapan & doa</label>
+                <label htmlFor="message" className="mb-2 block text-xs font-medium text-ivory/80">Ucapan & doa</label>
                 <Textarea id="message" placeholder="Tulis doa terbaik Anda..." {...register("message")} />
                 {errors.message && <p className="mt-1.5 text-xs text-rose">{errors.message.message}</p>}
               </div>
@@ -123,7 +133,7 @@ export function RsvpSection({ initialName }: { initialName: string }) {
               </div>
 
               {notice && (
-                <div className={cn("rounded-xl px-4 py-3 text-xs leading-relaxed", notice.type === "success" && "bg-sage-100 text-sage-900", notice.type === "error" && "bg-red-50 text-red-700", notice.type === "setup" && "bg-amber-50 text-amber-800")}>
+                <div className={cn("rounded-xl px-4 py-3 text-xs leading-relaxed", notice.type === "success" && "bg-gold/15 text-ivory", notice.type === "error" && "bg-rose/20 text-rose", notice.type === "setup" && "bg-batak-sand/15 text-batak-sand")}>
                   {notice.text}
                 </div>
               )}
@@ -135,40 +145,64 @@ export function RsvpSection({ initialName }: { initialName: string }) {
             </form>
           </Reveal>
 
-          <Reveal className="rounded-3xl bg-sage-900 p-6 text-ivory shadow-soft sm:p-8" delay={0.08}>
+          {/* Chat Bubble Wishes */}
+          <Reveal className="rounded-3xl border border-gold/20 bg-batak-deep/30 p-6 backdrop-blur-sm sm:p-8" delay={0.08}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.25em] text-gold">Buku Tamu</p>
-                <h3 className="mt-2 font-serif text-3xl font-semibold">Doa untuk Kami</h3>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-batak-sand">Buku Tamu</p>
+                <h3 className="mt-2 font-serif text-3xl font-semibold text-ivory">Doa untuk Kami</h3>
               </div>
               <MessageCircleHeart className="h-7 w-7 text-gold" strokeWidth={1.5} />
             </div>
 
-            <div className="mt-7 max-h-[550px] space-y-3 overflow-y-auto pr-1">
+            <div className="mt-7 max-h-[550px] space-y-4 overflow-y-auto pr-1">
               {isLoadingMessages && (
-                <div className="grid place-items-center py-16"><Loader2 className="h-5 w-5 animate-spin text-gold" /><span className="mt-3 text-xs text-ivory/50">Memuat ucapan...</span></div>
+                <div className="grid place-items-center py-16">
+                  <Loader2 className="h-5 w-5 animate-spin text-gold" />
+                  <span className="mt-3 text-xs text-ivory/50">Memuat ucapan...</span>
+                </div>
               )}
               {!isLoadingMessages && messages.length === 0 && (
-                <div className="rounded-2xl border border-white/10 px-5 py-12 text-center text-sm text-ivory/55">Jadilah yang pertama mengirimkan doa hangat.</div>
+                <div className="rounded-2xl border border-gold/10 px-5 py-12 text-center text-sm text-ivory/55">
+                  Jadilah yang pertama mengirimkan doa hangat.
+                </div>
               )}
-              {messages.map((item) => (
-                <article key={item.id} className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 className="text-sm font-medium text-white">{item.name}</h4>
-                      <p className="mt-1 flex items-center gap-1.5 text-[10px] text-gold">
-                        {item.attendance === "attending" ? <><CheckCircle2 className="h-3 w-3" /> Akan hadir</> : <>Berhalangan hadir</>}
-                        {item.attendance === "attending" && <><span>·</span><Users className="h-3 w-3" /> {item.guest_count}</>}
-                      </p>
+              {visibleMessages.map((item) => (
+                <article key={item.id} className="flex items-start gap-3">
+                  <span className="chat-avatar">{getInitial(item.name)}</span>
+                  <div className="chat-bubble flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <h4 className="text-sm font-semibold text-ivory">{item.name}</h4>
+                      <time className="text-[9px] text-ivory/40" dateTime={item.created_at}>
+                        {formatRelativeTime(item.created_at)}
+                      </time>
                     </div>
-                    <time className="text-[9px] text-ivory/35" dateTime={item.created_at}>
-                      {new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "short" }).format(new Date(item.created_at))}
-                    </time>
+                    <p className="mt-1 flex items-center gap-1.5 text-[10px] text-gold">
+                      {item.attendance === "attending" ? (
+                        <><CheckCircle2 className="h-3 w-3" /> Akan hadir</>
+                      ) : (
+                        <>Berhalangan hadir</>
+                      )}
+                      {item.attendance === "attending" && (
+                        <><span>·</span><Users className="h-3 w-3" /> {item.guest_count}</>
+                      )}
+                    </p>
+                    <p className="mt-2.5 text-sm leading-relaxed text-ivory/80">{item.message}</p>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-ivory/70">{item.message}</p>
                 </article>
               ))}
             </div>
+
+            {hasMore && (
+              <button
+                type="button"
+                onClick={() => setVisibleCount((c) => c + VISIBLE_INCREMENT)}
+                className="mx-auto mt-5 flex items-center gap-2 rounded-full border border-gold/25 bg-batak-ink/40 px-5 py-2.5 text-xs font-medium text-batak-sand transition hover:bg-gold/10"
+              >
+                <ChevronDown className="h-3.5 w-3.5" />
+                Muat lebih banyak
+              </button>
+            )}
           </Reveal>
         </div>
       </div>

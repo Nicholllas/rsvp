@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Dengan penuh sukacita, kami mengundang Anda untuk merayakan hari pernikahan Alin dan Richard.",
   openGraph: {
-    title: "Alin & Richard — 26 Juni 2027",
+    title: "Alin & Richard — 14 November 2026",
     description:
       "Kehadiran dan doa restu Anda adalah hadiah terindah bagi kami.",
     type: "website",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Alin & Richard",
-    description: "Undangan Pernikahan — 26 Juni 2027",
+    description: "Undangan Pernikahan — 14 November 2026",
   },
 };
 

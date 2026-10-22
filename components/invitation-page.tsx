@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { SplitLayout } from "@/components/layout/split-layout";
 import { ClosingSection } from "@/components/sections/closing-section";
 import { CoupleSection } from "@/components/sections/couple-section";
 import { EventSection } from "@/components/sections/event-section";
@@ -21,19 +22,21 @@ export function InvitationPage({ guestName }: { guestName: string }) {
   return (
     <>
       <OpeningCover guestName={guestName} isOpen={isOpen} onOpen={() => setIsOpen(true)} />
-      <main aria-hidden={!isOpen} className="overflow-hidden bg-cream">
-        <HeroSection active={isOpen} />
-        <QuoteSection />
-        <BatakDivider inverted />
-        <CoupleSection />
-        <StorySection />
-        <BatakDivider />
-        <EventSection />
-        <GallerySection />
-        <BatakDivider />
-        <RsvpSection initialName={guestName === "Bapak/Ibu/Saudara/i" ? "" : guestName} />
-        <GiftSection />
-        <ClosingSection />
+      <main aria-hidden={!isOpen} className="overflow-x-clip bg-batak-ink lg:bg-cream">
+        <SplitLayout>
+          <HeroSection active={isOpen} />
+          <QuoteSection />
+          <BatakDivider inverted variant="panel" />
+          <CoupleSection />
+          <StorySection />
+          <BatakDivider variant="panel" />
+          <EventSection />
+          <GallerySection />
+          <BatakDivider variant="panel" />
+          <RsvpSection initialName={guestName === "Bapak/Ibu/Saudara/i" ? "" : guestName} />
+          <GiftSection />
+          <ClosingSection />
+        </SplitLayout>
       </main>
       <MusicControl invitationOpen={isOpen} />
     </>

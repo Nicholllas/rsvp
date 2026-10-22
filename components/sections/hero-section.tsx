@@ -5,6 +5,7 @@ import { CalendarHeart, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import { usePhotoSwapOnView } from "@/components/layout/use-photo-swap";
 import { GorgaMark, UlosBand } from "@/components/shared/batak-ornament";
 import { weddingConfig } from "@/config/wedding";
 import { formatIndonesianDate } from "@/lib/utils";
@@ -23,6 +24,7 @@ function getTimeLeft(): TimeLeft {
 
 export function HeroSection({ active }: { active: boolean }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const photoRef = usePhotoSwapOnView({ src: "/images/alin-richard/cover.jpg", alt: "Alin dan Richard dalam busana adat Batak" });
 
   useEffect(() => {
     setTimeLeft(getTimeLeft());
@@ -31,16 +33,15 @@ export function HeroSection({ active }: { active: boolean }) {
   }, []);
 
   return (
-    <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-batak-ink px-5 py-24 text-center text-ivory">
-      <Image src="/images/cover-batak.svg" alt="" fill priority sizes="100vw" className="object-cover opacity-35 md:hidden" />
-      <Image src="/images/cover-batak-wide.svg" alt="" fill priority sizes="100vw" className="hidden object-cover opacity-35 md:block" />
-      <div className="absolute inset-0 bg-gradient-to-b from-batak-ink/70 via-batak-deep/65 to-batak-ink/95" />
-      <div className="absolute inset-0 bg-grain opacity-25" />
+    <section ref={photoRef as React.RefObject<HTMLElement>} id="home" className="relative flex min-h-[88svh] items-center justify-center overflow-hidden px-5 py-20 text-center text-ivory lg:min-h-[90vh]">
+      <Image src="/images/cover-batak.svg" alt="" fill priority sizes="100vw" className="object-cover opacity-30 md:hidden" />
+      <div className="absolute inset-0 bg-gradient-to-b from-batak-ink/40 via-batak-deep/30 to-batak-ink/60" />
+      <div className="absolute inset-0 bg-grain opacity-20" />
       <UlosBand className="absolute inset-x-0 top-0 z-10" />
       <motion.div className="absolute left-[8%] top-[22%] h-3 w-3 rotate-45 border border-gold/45" animate={{ y: [0, -14, 0], rotate: [45, 70, 45] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
       <motion.div className="absolute bottom-[18%] right-[9%] h-2 w-2 rotate-45 bg-batak-red" animate={{ y: [0, 12, 0], rotate: [45, 20, 45] }} transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }} />
       <motion.div
-        className="relative mx-auto w-full max-w-[620px] rounded-[10rem_10rem_2.5rem_2.5rem] border border-gold/30 px-3 pb-10 pt-16 sm:px-10 sm:pb-14 sm:pt-20"
+        className="relative mx-auto w-full max-w-[620px] rounded-[10rem_10rem_2.5rem_2.5rem] border border-gold/30 bg-batak-ink/30 px-3 pb-10 pt-16 backdrop-blur-[2px] sm:px-10 sm:pb-14 sm:pt-20"
         initial={false}
         animate={active ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.96, y: 20 }}
         transition={{ duration: 0.9, delay: active ? 1.42 : 0, ease: [0.22, 1, 0.36, 1] }}

@@ -43,7 +43,7 @@ dengan foto sendiri (nama file boleh tetap sama). Musik aktif berada di
 `public/audio/marry-me.m4a` dan dikonfigurasi melalui `music.src`.
 
 Tanggal menggunakan string ISO dengan offset zona waktu, misalnya
-`2027-06-26T08:00:00+07:00`. Link kalender `.ics` dibuat otomatis oleh `/api/calendar`.
+`2026-11-14T08:00:00+07:00`. Link kalender `.ics` dibuat otomatis oleh `/api/calendar`.
 
 ## Deploy ke Vercel Hobby
 

@@ -41,7 +41,7 @@ export default function OpenGraphImage() {
           margin: "26px 0",
         }}
       />
-      <div style={{ fontSize: 26, letterSpacing: 5 }}>26 · 06 · 2027</div>
+      <div style={{ fontSize: 26, letterSpacing: 5 }}>14 · 11 · 2026</div>
     </div>,
     size,
   );

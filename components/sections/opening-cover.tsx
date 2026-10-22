@@ -86,7 +86,7 @@ export function OpeningCover({ guestName, isOpen, onOpen }: { guestName: string;
         <GorgaMark className="mx-auto mb-4 text-gold" />
         <p className="text-[10px] uppercase tracking-[0.4em] text-gold">The Wedding of</p>
         <h1 className="mt-4 font-serif text-5xl font-semibold leading-none sm:text-6xl">{weddingConfig.couple.shortNames}</h1>
-        <p className="mt-4 text-xs tracking-[0.25em] text-ivory/70">26 · 06 · 2027</p>
+        <p className="mt-4 text-xs tracking-[0.25em] text-ivory/70">14 · 11 · 2026</p>
 
         <div className="relative mx-auto my-7 h-24 w-40 [perspective:800px]">
           <div className="absolute inset-x-0 bottom-0 h-20 rounded-lg border border-gold/35 bg-[#e8dfcc] shadow-2xl" />
